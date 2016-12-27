@@ -1,0 +1,13 @@
+body {
+    background-attachment: fixed;
+   /* background-image: url("img/bkg.jpg");*/
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+canvas {
+    margin: auto;
+    padding: 0;
+    display: inline-block;
+    border: solid black 1px;
+}
