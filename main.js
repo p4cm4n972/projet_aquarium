@@ -23,7 +23,7 @@ window.onload = function()
     var y = coordsAleatoire(10,590);
     var u = coordsAleatoire(10,1280);
     var v = coordsAleatoire(10,590);
-    var reperePoiPoissonRouge = 1;
+    var reperePoissonRouge = 1;
     var reperePoissonBleu = 1;
    
 
@@ -42,10 +42,10 @@ window.onload = function()
 //DESSIN DU POISSON
     context.beginPath();
     context.moveTo(x, y);
-    context.quadraticCurveTo(x + reperePoiPoissonRouge * 10, y - reperePoiPoissonRouge * 10, x + reperePoiPoissonRouge * 20, y);
-    context.quadraticCurveTo(x + reperePoiPoissonRouge * 30, y - reperePoiPoissonRouge * 5, x + reperePoiPoissonRouge * 30, y);
-    context.quadraticCurveTo(x + reperePoiPoissonRouge * 30, y + reperePoiPoissonRouge * 5, x + reperePoiPoissonRouge * 20, y);
-    context.quadraticCurveTo(x + reperePoiPoissonRouge * 10, y + reperePoiPoissonRouge * 10, x, y);
+    context.quadraticCurveTo(x + reperePoissonRouge * 10, y - reperePoissonRouge * 10, x + reperePoissonRouge * 20, y);
+    context.quadraticCurveTo(x + reperePoissonRouge * 30, y - reperePoissonRouge * 5, x + reperePoissonRouge * 30, y);
+    context.quadraticCurveTo(x + reperePoissonRouge * 30, y + reperePoissonRouge * 5, x + reperePoissonRouge * 20, y);
+    context.quadraticCurveTo(x + reperePoissonRouge * 10, y + reperePoissonRouge * 10, x, y);
     context.fillStyle = "red";
     context.fill();
     
@@ -65,10 +65,10 @@ window.onload = function()
     v += vitesseV;
 
     if(x <= 1 || x >= 1290 || y <= 1 || y >= 600){
-        vitesseX *= -1;
-        vitesseY *= -1;
+        vitesseX *= coordsAleatoire(-1,1);
+        vitesseY *= coordsAleatoire(-1,1);
     
-        reperePoiPoissonRouge *= -1;
+        reperePoissonRouge *= -1;
         
     };
     if(u <= 1 || u >= 1290 || v <= 1 || v >= 600){
