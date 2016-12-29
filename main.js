@@ -59,57 +59,27 @@ window.onload = function()
     context.fill();
     
 
+
+//COLLISION
+    if(x <= 0 || x >= 1290){
+        vitesseX *= -1;
+        reperePoissonRouge *= -1;
+    };
+
+    if(y <= 0 || y >= 600 ){
+        vitesseY *= -1;
+    };
+    if(u <= 1 || u >= 1290){
+        vitesseU *= -1;
+        reperePoissonBleu *= -1;
+    };
+
+    if(v <= 1 || v >= 600 ){
+        vitesseV *= -1;
+    };
     x -= vitesseX;
     y -= vitesseY;
     u += vitesseU;
     v += vitesseV;
-
-//BORNE INFERIEUR
-    if(x <= 1){
-        vitesseY *= coordsAleatoire(-1,1);
-        vitesseX *= -1;
-        reperePoissonRouge *= -1;
     };
-
-    if(y <= 1){
-        vitesseY *= -1;
-        vitesseX *= coordsAleatoire(-1,1);
-        reperePoissonRouge *= -1;
-    }
-     if(u <= 1){
-        vitesseV *= coordsAleatoire(-1,1);
-        vitesseU *= -1;
-        reperePoissonBleu *= -1;
-    };
-
-    if(v <= 1){
-        vitesseV *= -1;
-        vitesseU *= coordsAleatoire(-1,1);
-        reperePoissonBleu *= -1;
-    }
-
-    //BORNE SUPEREIUR
-    if(x >= 1260){
-        vitesseY *= coordsAleatoire(-1,1);
-        vitesseX *= -1;
-        reperePoissonRouge *= -1;
-    };
-
-    if(y >= 600){
-        vitesseY *= -1;
-        vitesseX *= coordsAleatoire(-1,1);
-        reperePoissonRouge *= -1;
-    }
-     if(u >= 1260){
-        vitesseV *= coordsAleatoire(-1,1);
-        vitesseU *= -1;
-        reperePoissonBleu *= -1;
-    };
-
-    if(v >= 600){
-        vitesseV *= -1;
-        vitesseU *= coordsAleatoire(-1,1);
-        reperePoissonBleu *= -1;
-    }
-    }
 };
