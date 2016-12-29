@@ -81,5 +81,8 @@ window.onload = function()
     y -= vitesseY;
     u += vitesseU;
     v += vitesseV;
-    };
-};
+
+    //EVENEMENT MOUVEMENT DE LA SOURIS
+    onMouseMove()
+    };//fin animation
+};//fin FONCTION
