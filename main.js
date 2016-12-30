@@ -4,6 +4,10 @@ var canvas = document.getElementById('myCanvas');
 
 var context = canvas.getContext('2d');
 
+var poisson = document.getElementById('myCanvas');
+
+
+
   //FONCTION GENERE LES COORDONNEES DU DES POISSONS ALEATOIREMENT
 var coordsAleatoire = function (min, max) {
     var nb = min + (max - min + 1) * Math.random();
@@ -13,14 +17,15 @@ var coordsAleatoire = function (min, max) {
 var Poisson = function (direction) {
     this.posX = coordsAleatoire(10, 710);
     this.posY = coordsAleatoire(10, 570);
-    this.position = [this.posX,this.posY];
     this.rgb0 = coordsAleatoire(0, 254);
     this.rgb1 = coordsAleatoire(0, 254);
     this.rgb2 = coordsAleatoire(0, 254);
     this.direction = 1;
     this.vitesseX = 3;
     this.vitesseY = 3;
-    /*this.event = onMouseMove;*/
+    this.poisson = poisson.addEventListener('click', function() {
+    Poisson.prototype.vitesseX *= -1;
+});
 };
 //DESSIN POISSON
 Poisson.prototype.draw = function (direction) {
@@ -46,12 +51,24 @@ var poisson07 = new Poisson();
 var poisson08 = new Poisson();
 var poisson09 = new Poisson();
 var poisson10 = new Poisson();
+var poisson11 = new Poisson();
+var poisson12 = new Poisson();
+var poisson13 = new Poisson();
+var poisson14 = new Poisson();
+var poisson15 = new Poisson();
+var poisson16 = new Poisson();
+var poisson17 = new Poisson();
+var poisson18 = new Poisson();
+var poisson19 = new Poisson();
+var poisson20 = new Poisson();
 
 //DECLARATION FONCTION ANIMATION
 var myInterval = setInterval(animate,1000/30);
 
 function animate() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+
+ 
 
 //CREATION INSTANCES POISSONS
 //poisson01
@@ -67,9 +84,7 @@ this.poisson01.posY += this.poisson01.vitesseY
     if(this.poisson01.posY <= 0 || this.poisson01.posY >= 580 ){
         this.poisson01.vitesseY *= -1;
     };
-    if(this.poisson01.posX && this.poisson01.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson01.vitesseX *= -1;
-    Poisson.prototype.vitesseX *= -1;}
+    
     
 //poisson02
 poisson02.draw();
