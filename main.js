@@ -17,6 +17,7 @@ var coordsAleatoire = function (min, max) {
 var Poisson = function (direction) {
     this.posX = coordsAleatoire(10, 710);
     this.posY = coordsAleatoire(10, 570);
+    this.position = [this.posX,this.posY];
     this.rgb0 = coordsAleatoire(0, 254);
     this.rgb1 = coordsAleatoire(0, 254);
     this.rgb2 = coordsAleatoire(0, 254);
@@ -27,7 +28,7 @@ var Poisson = function (direction) {
     Poisson.prototype.vitesseX *= -1;
 });
 };
-//DESSIN POISSON
+//DESSIN POISSON A L'AIDE DES COURBES
 Poisson.prototype.draw = function (direction) {
     Poisson.prototype.canvas = document.getElementById(myCanvas);
     Poisson.prototype.context = canvas.getContext('2d');
@@ -39,8 +40,42 @@ Poisson.prototype.draw = function (direction) {
     Poisson.prototype.context.quadraticCurveTo(this.posX + this.direction * 10, this.posY + this.direction * 10, this.posX, this.posY);
     Poisson.prototype.context.fillStyle = "rgb(" + this.rgb0 + "," + this.rgb1 + "," + this.rgb2 + ")";
     Poisson.prototype.context.fill();
-}
+};
+//LIMITE AQUARIUM
+Poisson.prototype.limite = function () {
+    if(Poisson.prototype.posX <= 0 || Poisson.prototype.posX >= 720){
+        Poisson.prototype.vitesseX *= -1;
+        Poisson.prototype.direction *= -1;
+    }
 
+    if(Poisson.prototype.posY <= 0 || Poisson.prototype.posY >= 580 ){
+        Poisson.prototype.vitesseY *= -1;
+    }
+};
+//MOUVEMENT
+Poisson.prototype.move = function () {
+    this.posX -= this.vitesseX;
+    this.posY += this.vitesseY
+};
+//COLLISION
+Poisson.prototype.collision = function () {
+    if(this.posX <= 0 || this.posX >= 720){
+        this.vitesseX *= -1;
+        this.direction *= -1;
+    }
+     if(this.posY <= 0 || this.posY >= 580 ){
+        this.vitesseY *= -1;
+    }
+};
+//EVITEMENT
+/*Poisson.prototype.evit = function () {
+    if(Poisson.prototype.position[0,1] == this.position[0,1]) {
+        Poisson.prototype.vitesseX *= -1;
+    }
+};*/
+
+
+//CREATION INSTANCES POISSONS
 var poisson01 = new Poisson();
 var poisson02 = new Poisson();
 var poisson03 = new Poisson();
@@ -68,154 +103,101 @@ var myInterval = setInterval(animate,1000/30);
 function animate() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
- 
-
+  canvas.addEventListener("click",function() {
+    Poisson.prototype.vitesseX *= -1;
+});
 //CREATION INSTANCES POISSONS
 //poisson01
 poisson01.draw();
-this.poisson01.posX -= this.poisson01.vitesseX;
-this.poisson01.posY += this.poisson01.vitesseY
-                //COLLISION
-    if(this.poisson01.posX <= 0 || this.poisson01.posX >= 720){
-        this.poisson01.vitesseX *= -1;
-        this.poisson01.direction *= -1;
-    };
-
-    if(this.poisson01.posY <= 0 || this.poisson01.posY >= 580 ){
-        this.poisson01.vitesseY *= -1;
-    };
-    
-    
+poisson01.move();
+poisson01.collision();
+    if(poisson01.position[0,1] == poisson02.position[0,1] ||
+        poisson01.position[0,1] == poisson03.position[0,1] ||
+        poisson01.position[0,1] == poisson04.position[0,1] ||
+        poisson01.position[0,1] == poisson05.position[0,1] ||
+        poisson01.position[0,1] == poisson06.position[0,1] ||
+        poisson01.position[0,1] == poisson07.position[0,1] ||
+        poisson01.position[0,1] == poisson08.position[0,1] ||
+        poisson01.position[0,1] == poisson09.position[0,1] ||
+        poisson01.position[0,1] == poisson10.position[0,1]
+        )  {
+        poisson01.vitesseX *= -1;
+    }
 //poisson02
 poisson02.draw();
-this.poisson02.posX -= this.poisson02.vitesseX;
-this.poisson02.posY -= this.poisson02.vitesseY;
-
-    if(this.poisson02.posX <= 0 || this.poisson02.posX >= 720){
-        this.poisson02.vitesseX *= -1;
-        this.poisson02.direction *= -1;
-    };
-
-    if(this.poisson02.posY <= 0 || this.poisson02.posY >= 580 ){
-        this.poisson02.vitesseY *= -1;
-    };
-    if(this.poisson02.posX && this.poisson02.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson02.vitesseX *= -1;
-    Poisson.prototype.vitesseX *= -1;}
+poisson02.move();
+poisson02.collision();
 //poisson03
 poisson03.draw();
-this.poisson03.posX -= this.poisson03.vitesseX;
-this.poisson03.posY -= this.poisson03.vitesseY;
-
-    if(this.poisson03.posX <= 0 || this.poisson03.posX >= 720){
-        this.poisson03.vitesseX *= -1;
-        this.poisson03.direction *= -1;
-    };
-
-    if(this.poisson03.posY <= 0 || this.poisson03.posY >= 580 ){
-        this.poisson03.vitesseY *= -1;
-    };
-    if(this.poisson03.posX && this.poisson03.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson03.vitesseX *= -1;
-    Poisson.prototype.vitesseX *= -1;}
+poisson03.move();
+poisson03.collision();    
 //poisson04
-    poisson04.draw();
-this.poisson04.posX -= this.poisson04.vitesseX;
-this.poisson04.posY -= this.poisson04.vitesseY;
-
-    if(this.poisson04.posX <= 0 || this.poisson04.posX >= 720){
-        this.poisson04.vitesseX *= -1;
-        this.poisson04.direction *= -1;
-    };
-
-    if(this.poisson04.posY <= 0 || this.poisson04.posY >= 580 ){
-        this.poisson04.vitesseY *= -1;
-    };
-if(this.poisson04.posX && this.poisson04.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson04.vitesseX *= -1;
-Poisson.prototype.vitesseX *= -1;}
+poisson04.draw();
+poisson04.move();
+poisson04.collision();
 //poisson05
 poisson05.draw();
-this.poisson05.posX -= this.poisson05.vitesseX;
-this.poisson05.posY -= this.poisson05.vitesseY;
-
-    if(this.poisson05.posX <= 0 || this.poisson05.posX >= 720){
-        this.poisson05.vitesseX *= -1;
-        this.poisson05.direction *= -1;
-    };
-
-    if(this.poisson05.posY <= 0 || this.poisson05.posY >= 580 ){
-        this.poisson05.vitesseY *= -1;
-    };
-if(this.poisson05.posX && this.poisson05.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson05.vitesseX *= -1;
-Poisson.prototype.vitesseX *= -1;}
+poisson05.move();
+poisson05.collision();
 //poisson06
 poisson06.draw();
-this.poisson06.posX -= this.poisson06.vitesseX;
-this.poisson06.posY -= this.poisson06.vitesseY;
-
-    if(this.poisson06.posX <= 0 || this.poisson06.posX >= 720){
-        this.poisson06.vitesseX *= -1;
-        this.poisson06.direction *= -1;
-    };
-
-    if(this.poisson06.posY <= 0 || this.poisson06.posY >= 580 ){
-        this.poisson06.vitesseY *= -1;
-    };
-if(this.poisson06.posX && this.poisson06.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson06.vitesseX *= -1;
-Poisson.prototype.vitesseX *= -1;}
+poisson06.move();
+poisson06.collision();
 //poisson07
 poisson07.draw();
-this.poisson07.posX -= this.poisson07.vitesseX;
-this.poisson07.posY -= this.poisson07.vitesseY;
-
-    if(this.poisson07.posX <= 0 || this.poisson07.posX >= 720){
-        this.poisson07.vitesseX *= -1;
-        this.poisson07.direction *= -1;
-    };
-
-    if(this.poisson07.posY <= 0 || this.poisson07.posY >= 580 ){
-        this.poisson07.vitesseY *= -1;
-    };
-if(this.poisson07.posX && this.poisson07.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson07.vitesseX *= -1;
-Poisson.prototype.vitesseX *= -1;}
+poisson07.move();
+poisson07.collision();
 //poisson08
-    poisson08.draw();
-this.poisson08.posX -= this.poisson08.vitesseX;
-this.poisson08.posY -= this.poisson08.vitesseY;
-
-    if(this.poisson08.posX <= 0 || this.poisson08.posX >= 720){
-        this.poisson08.vitesseX *= -1;
-        this.poisson08.direction *= -1;
-    };
-
-    if(this.poisson08.posY <= 0 || this.poisson08.posY >= 580 ){
-        this.poisson08.vitesseY *= -1;
-    };
-    if(this.poisson08.posX && this.poisson08.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson08.vitesseX *= -1;
-    Poisson.prototype.vitesseX *= -1;}
+poisson08.draw();
+poisson08.move();
+poisson08.collision();    
 //poisson09
-    poisson09.draw();
-    this.poisson09.posX -= this.poisson09.vitesseX;
-    this.poisson09.posY -= this.poisson09.vitesseY;
-
-    if(this.poisson09.posX <= 0 || this.poisson09.posX >= 720){
-        this.poisson09.vitesseX *= -1;
-        this.poisson09.direction *= -1;
-    };
-
-    if(this.poisson09.posY <= 0 || this.poisson09.posY >= 580 ){
-        this.poisson09.vitesseY *= -1;
-    };
-    if(this.poisson09.posX && this.poisson09.posY == Poisson.prototype.posX && Poisson.prototype.posY) {
-        this.poisson09.vitesseX *= -1;
-        Poisson.prototype.vitesseX *= -1;
-    }
+poisson09.draw();
+poisson09.move();
+poisson09.collision();    
 //poisson10
-
+poisson10.draw();
+poisson10.move();
+poisson10.collision();
+//poisson11
+poisson11.draw();
+poisson11.move();
+poisson11.collision();
+//poisson12
+poisson12.draw();
+poisson12.move();
+poisson12.collision();
+//poisson13
+poisson13.draw();
+poisson13.move();
+poisson13.collision();
+//poisson14
+poisson14.draw();
+poisson14.move();
+poisson14.collision();
+//poisson15
+poisson15.draw();
+poisson15.move();
+poisson15.collision();
+//poisson16
+poisson16.draw();
+poisson16.move();
+poisson16.collision();
+//poisson17
+poisson17.draw();
+poisson17.move();
+poisson17.collision();
+//poisson18
+poisson18.draw();
+poisson18.move();
+poisson18.collision();
+//poisson19
+poisson19.draw();
+poisson19.move();
+poisson19.collision();
+//poisson20
+poisson20.draw();
+poisson20.move();
+poisson20.collision();
 
 };//FIN ANIMATION
