@@ -1,2 +1,4 @@
 # projet_aquarium
-animation aquarium avec gestion des collisions et evenements souris
+Javascript, html5, css3, Canvas
+fonction constructeur, prototype, 2D collisions
+![imp screen](readme.png)
